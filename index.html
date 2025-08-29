@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国产Jeep Uconnect升级软件总汇</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --jeep-green: #2C5E2A;
+            --jeep-light: #E9F5E9;
+            --jeep-dark: #1C3B1A;
+            --jeep-accent: #4A8C47;
+            --jeep-gold: #D4AF37;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding-bottom: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--jeep-green), var(--jeep-dark));
+            color: white;
+            padding: 25px 0;
+            margin-bottom: 30px;
+            border-bottom: 5px solid var(--jeep-gold);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header h1 {
+            font-weight: 800;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            margin: 8px 0 0;
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border: none;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background: linear-gradient(to right, var(--jeep-green), var(--jeep-accent));
+            color: white;
+            font-weight: 700;
+            border-radius: 10px 10px 0 0 !important;
+            padding: 16px 24px;
+            font-size: 1.2rem;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .table th {
+            background: linear-gradient(to bottom, var(--jeep-dark), var(--jeep-green));
+            color: white;
+            vertical-align: middle;
+            position: sticky;
+            top: 0;
+            font-weight: 700;
+            text-align: center;
+            padding: 14px 12px;
+            font-size: 1.05rem;
+            border: 1px solid #dee2e6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .table td {
+            vertical-align: middle;
+            text-align: center;
+            padding: 12px 10px;
+            border: 1px solid #dee2e6;
+            font-size: 0.95rem;
+        }
+        
+        .table-hover tbody tr:hover {
+            background-color: var(--jeep-light);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .filters {
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            color: var(--jeep-dark);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+        
+        .form-control, .form-select {
+            border-radius: 6px;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+            transition: all 0.2s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--jeep-accent);
+            box-shadow: 0 0 0 0.25rem rgba(44, 94, 42, 0.25);
+        }
+        
+        .badge {
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        .badge-model {
+            background-color: var(--jeep-dark);
+            color: white;
+        }
+        
+        .supplier-harman { background-color: #e3f2fd; }
+        .supplier-conti { background-color: #e8f5e9; }
+        .supplier-panasonic { background-color: #fff3e0; }
+        .supplier-mitsubishi { background-color: #f3e5f5; }
+        .supplier-aptiv { background-color: #e0f2f1; }
+        .supplier-unknown { background-color: #f5f5f5; }
+        
+        footer {
+            background: linear-gradient(to right, var(--jeep-dark), var(--jeep-green));
+            color: white;
+            padding: 25px 0;
+            margin-top: 40px;
+            border-top: 3px solid var(--jeep-gold);
+        }
+        
+        .note-box {
+            background: linear-gradient(to right, #fff8e1, #fffdf6);
+            border-left: 4px solid var(--jeep-gold);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .note-box h5 {
+            color: var(--jeep-dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .model-header {
+            background: linear-gradient(to right, #e9ecef, #f8f9fa);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .problem-list {
+            margin-bottom: 0;
+            padding-left: 20px;
+            text-align: left;
+        }
+        
+        .problem-list li {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            font-style: italic;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .btn-outline-secondary {
+            border-color: var(--jeep-accent);
+            color: var(--jeep-dark);
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-outline-secondary:hover {
+            background-color: var(--jeep-accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .table {
+                font-size: 0.85rem;
+            }
+            
+            .filters .col-md-3 {
+                margin-bottom: 15px;
+            }
+            
+            .table td, .table th {
+                padding: 8px 6px;
+            }
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-info i {
+            margin-right: 8px;
+            color: var(--jeep-gold);
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <div class="container">
+            <h1><i class="fas fa-car me-2"></i>国产Jeep Uconnect升级软件总汇</h1>
+            <p>收音机、主机和导航故障处理方案软件下载</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filters card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 filter-group">
+                        <label for="searchInput"><i class="fas fa-search me-1"></i>全局搜索</label>
+                        <input type="text" id="searchInput" class="form-control" placeholder="输入关键词搜索整行内容...">
+                    </div>
+                    <div class="col-md-2 filter-group">
+                        <label for="modelFilter"><i class="fas fa-filter me-1"></i>车型筛选</label>
+                        <select id="modelFilter" class="form-select">
+                            <option value="">所有车型</option>
+                            <option value="M4">M4</option>
+                            <option value="K4">K4</option>
+                            <option value="K8">K8</option>
+                            <option value="BQ">BQ</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 filter-group">
+                        <label for="yearFilter"><i class="fas fa-calendar me-1"></i>年款筛选</label>
+                        <select id="yearFilter" class="form-select">
+                            <option value="">所有年款</option>
+                            <option value="MY17">MY17</option>
+                            <option value="MY18">MY18</option>
+                            <option value="MY19">MY19</option>
+                            <option value="MY20">MY20</option>
+                            <option value="MY21">MY21</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 filter-group">
+                        <label for="supplierFilter"><i class="fas fa-industry me-1"></i>供应商筛选</label>
+                        <select id="supplierFilter" class="form-select">
+                            <option value="">所有供应商</option>
+                            <option value="Harman">Harman</option>
+                            <option value="Conti">Conti</option>
+                            <option value="Panasonic">Panasonic</option>
+                            <option value="三菱">三菱</option>
+                            <option value="APTIV">APTIV</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 filter-group d-flex align-items-end">
+                        <button id="resetFilters" class="btn btn-outline-secondary w-100">
+                            <i class="fas fa-undo me-1"></i>重置筛选
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-table me-2"></i>收音机软件升级总表
+            </div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>车型</th>
+                                <th>年款</th>
+                                <th>收音机屏幕尺寸</th>
+                                <th>供应商</th>
+                                <th>机型代号</th>
+                                <th>软件更新</th>
+                                <th>修复的主要问题</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- M4 车型数据 -->
+                            <tr data-model="M4" data-year="MY17" data-supplier="Harman">
+                                <td rowspan="8" class="align-middle fw-bold model-header">M4</td>
+                                <td>MY17</td>
+                                <td>8.4</td>
+                                <td class="supplier-harman">Harman</td>
+                                <td><span class="badge badge-model">VP4</span></td>
+                                <td>升级完成后收音机软件版本为18.38.51</td>
+                                <td>座椅加热控制异常</td>
+                            </tr>
+                            <tr data-model="M4" data-year="MY18/MY19" data-supplier="Conti">
+                                <td>MY18/MY19</td>
+                                <td>8.4</td>
+                                <td class="supplier-conti">Conti</td>
+                                <td><span class="badge badge-model">VP2R</span></td>
+                                <td>升级完成后收音机软件版本为23.02.32.00 (MY19)<br>23.02.19.50 (MY18)</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>屏幕黑屏（多媒体工作正常）</li>
+                                        <li>触屏异常跳动</li>
+                                        <li>开机时卡在JEEP图标画面，稍后自动黑屏或重启</li>
+                                        <li>连接百度carlife时，断开连接后无法重新连接</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="M4" data-year="MY18/MY19" data-supplier="Panasonic">
+                                <td>MY18/MY19</td>
+                                <td>8.4</td>
+                                <td class="supplier-panasonic">Panasonic</td>
+                                <td><span class="badge badge-model">VP4R</span></td>
+                                <td>升级完成后收音机软件版本为 IR22.5-MR28.3</td>
+                                <td>蓝牙连接后无声音输出</td>
+                            </tr>
+                            <tr data-model="M4" data-year="MCA MY21" data-supplier="三菱">
+                                <td>MCA MY21</td>
+                                <td>8.4</td>
+                                <td class="supplier-mitsubishi">三菱</td>
+                                <td><span class="badge badge-model">R1L</span></td>
+                                <td>升级完成后收音机软件版本为26.84</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>时间显示不正确</li>
+                                        <li>车机出现黑屏无法点亮</li>
+                                        <li>部分型号U盘无法识别</li>
+                                        <li>车辆设置无法进入</li>
+                                        <li>车机语言自动变成英文</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="M4" data-year="MCA MY21" data-supplier="三菱">
+                                <td>MCA MY21</td>
+                                <td>8.4</td>
+                                <td class="supplier-mitsubishi">三菱</td>
+                                <td><span class="badge badge-model">R1L</span></td>
+                                <td>升级完成后收音机软件版本为26.89</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>收音机启动时不显示画面，有声音、背光，倒车时有倒车影像</li>
+                                        <li>收音机启动时显示英文</li>
+                                        <li>优化无线carplay连接性能</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="M4" data-year="MCA MY21" data-supplier="三菱">
+                                <td>MCA MY21</td>
+                                <td>8.4</td>
+                                <td class="supplier-mitsubishi">三菱</td>
+                                <td><span class="badge badge-model">R1L</span></td>
+                                <td>升级完成后收音机软件版本为41.00</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>时间显示不正确</li>
+                                        <li>车机出现黑屏无法点亮</li>
+                                        <li>部分型号U盘无法识别</li>
+                                        <li>车辆设置无法进入</li>
+                                        <li>车机语言自动变成英文</li>
+                                        <li>收音机启动时不显示画面，有声音、背光，倒车时有倒车影像</li>
+                                        <li>收音机启动时显示英文</li>
+                                        <li>优化无线carplay连接性能</li>
+                                        <li>时间慢</li>
+                                        <li>日行灯功能失效</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="M4" data-year="MCA MY21" data-supplier="哈曼">
+                                <td>MCA MY21</td>
+                                <td>10.1</td>
+                                <td class="supplier-harman">哈曼</td>
+                                <td><span class="badge badge-model">R1H</span></td>
+                                <td>升级完成后收音机软件版本为17.27</td>
+                                <td>GPS时间不准确</td>
+                            </tr>
+                            <tr data-model="M4" data-year="MCA MY21" data-supplier="哈曼">
+                                <td>MCA MY21</td>
+                                <td>10.1</td>
+                                <td class="supplier-harman">哈曼</td>
+                                <td><span class="badge badge-model">R1H</span></td>
+                                <td>升级完成后收音机软件版本为R17.89</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>呼叫唤醒词无法唤醒叮当语音</li>
+                                        <li>在线导航定位偏移</li>
+                                        <li>屏幕部分区域触摸无反应</li>
+                                        <li>倒车辅助线无法显示</li>
+                                        <li>车联网相关app在主页上被隐藏</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            
+                            <!-- K4 车型数据 -->
+                            <tr data-model="K4" data-year="MY16/MY17" data-supplier="Harman">
+                                <td rowspan="5" class="align-middle fw-bold model-header">K4</td>
+                                <td>MY16/MY17</td>
+                                <td>8.4</td>
+                                <td class="supplier-harman">Harman</td>
+                                <td><span class="badge badge-model">VP4</span></td>
+                                <td>原导航主机软件版本 16.07.91或者15.40.92 先升级以下文件<br>升级完成后收音机软件版本为17.33.55</td>
+                                <td rowspan="2">起动车辆后空调温度自动升高</td>
+                            </tr>
+                            <tr data-model="K4" data-year="MY16/MY17" data-supplier="Harman">
+                                <td>MY16/MY17</td>
+                                <td>8.4</td>
+                                <td class="supplier-harman">Harman</td>
+                                <td><span class="badge badge-model">VP4</span></td>
+                                <td>原导航主机软件版本 17.08.51<br>升级完成后收音机软件版本为17.40.57</td>
+                            </tr>
+                            <tr data-model="K4" data-year="MCA MY19" data-supplier="APTIV">
+                                <td>MCA MY19</td>
+                                <td>8.4不带导航</td>
+                                <td class="supplier-aptiv">APTIV</td>
+                                <td><span class="badge badge-model">VP2R</span></td>
+                                <td>升级完成后收音机软件版本为184809</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>收音机连接carplay地图时定位不准（定位在长沙）</li>
+                                        <li>U盘播放歌曲偶发熄火休眠后再次上电播放无法记忆上传播放歌曲</li>
+                                        <li>手机蓝牙功能在拨出电话或挂断电话瞬间出现爆音或者蓝牙电话有时没有声音（排除硬件问题）</li>
+                                        <li>屏幕在无触摸操作的情况下偶发出现按键显示有操作，在循环点火开关后故障排除</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="K4" data-year="MCA MY19" data-supplier="Panasonic">
+                                <td>MCA MY19</td>
+                                <td>8.4带导航</td>
+                                <td class="supplier-panasonic">Panasonic</td>
+                                <td><span class="badge badge-model">VP4R</span></td>
+                                <td>升级完成后收音机软件版本为MR28.4</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>长时间使用蓝牙或收音机后，蓝牙无法继续播放音乐</li>
+                                        <li>长时间使用蓝牙或收音机后，FM不能调台</li>
+                                        <li>GPS时间不同步</li>
+                                        <li>使用苹果手机连接Carplay使用导航时，默认音量一直为15，无法调节</li>
+                                        <li>使用不在兼容列表内的手机连接百度Carlife后导航死机</li>
+                                        <li>客户使用VP4R自带导航搜索界面时，下方出现半透明图层，图层下的按钮无法点击</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="K4" data-year="MCAMY20" data-supplier="Panasonic">
+                                <td>MCAMY20</td>
+                                <td>8.4带导航及车联网</td>
+                                <td class="supplier-panasonic">Panasonic</td>
+                                <td><span class="badge badge-model">VP4R</span></td>
+                                <td>升级完成后收音机软件版本为JR33.31</td>
+                                <td>车辆启动后误弹"连接服务错误"弹窗</td>
+                            </tr>
+                            
+                            <!-- K8 车型数据 -->
+                            <tr data-model="K8" data-year="MY19" data-supplier="APTIV">
+                                <td rowspan="4" class="align-middle fw-bold model-header">K8</td>
+                                <td>MY19</td>
+                                <td>8.4不带导航</td>
+                                <td class="supplier-aptiv">APTIV</td>
+                                <td><span class="badge badge-model">VP2R</span></td>
+                                <td>升级完成后收音机软件版本为184809</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>收音机连接carplay地图时定位不准（定位在长沙）</li>
+                                        <li>U盘播放歌曲偶发熄火休眠后再次上电播放无法记忆上传播放歌曲</li>
+                                        <li>手机蓝牙功能在拨出电话或挂断电话瞬间出现爆音或者蓝牙电话有时没有声音（排除硬件问题）</li>
+                                        <li>屏幕在无触摸操作的情况下偶发出现按键显示有操作，在循环点火开关后故障排除</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="K8" data-year="MY19" data-supplier="Panasonic">
+                                <td>MY19</td>
+                                <td>8.4带导航</td>
+                                <td class="supplier-panasonic">Panasonic</td>
+                                <td><span class="badge badge-model">VP4R</span></td>
+                                <td>升级完成导航软件版本为：IR22.5</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>发动机盖打开时会出现摄像头位置不正确</li>
+                                        <li>倒车影像无显示</li>
+                                        <li>PS时间同步问题(市场暂未发生)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="K8" data-year="MY19" data-supplier="Panasonic">
+                                <td>MY19</td>
+                                <td>8.4带导航</td>
+                                <td class="supplier-panasonic">Panasonic</td>
+                                <td><span class="badge badge-model">VP4R</span></td>
+                                <td>导航软件版本JR30.2，软件JR30.2需要在IR22.5的基础上进行升级</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>长时间使用蓝牙或收音机后，蓝牙无法继续播放音乐</li>
+                                        <li>长时间使用蓝牙或收音机后，FM不能调台</li>
+                                        <li>GPS时间不同步</li>
+                                        <li>使用苹果手机连接Carplay使用导航时，默认音量一直为15，无法调节</li>
+                                        <li>使用不在兼容列表内的手机连接百度Carlife后导航死机</li>
+                                        <li>客户使用VP4R自带导航搜索界面时，下方出现半透明图层，图层下的按钮无法点击</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="K8" data-year="MY20" data-supplier="Panasonic">
+                                <td>MY20</td>
+                                <td>8.4带导航及车联网</td>
+                                <td class="supplier-panasonic">Panasonic</td>
+                                <td><span class="badge badge-model">VP4R</span></td>
+                                <td>升级完成导航软件版本为:JR34.2</td>
+                                <td>车辆启动后误弹"连接服务错误"弹窗</td>
+                            </tr>
+                            
+                            <!-- BQ 车型数据 -->
+                            <tr data-model="BQ" data-year="MY18" data-supplier="Conti">
+                                <td rowspan="2" class="align-middle fw-bold model-header">BQ</td>
+                                <td>MY18</td>
+                                <td>7.0不带导航</td>
+                                <td class="supplier-conti">Conti</td>
+                                <td><span class="badge badge-model">VP2R</span></td>
+                                <td>升级完成收音机软件版本为：23.02.19.50</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>屏幕黑屏（多媒体工作正常）</li>
+                                        <li>触屏异常跳动</li>
+                                        <li>开机时卡在JEEP图标画面，稍后自动黑屏或重启</li>
+                                        <li>连接百度carlife时，断开连接后无法重新连接</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr data-model="BQ" data-year="MY19" data-supplier="Conti">
+                                <td>MY19</td>
+                                <td>7.0不带导航</td>
+                                <td class="supplier-conti">Conti</td>
+                                <td><span class="badge badge-model">VP2R</span></td>
+                                <td>升级完成收音机软件版本为：23.02.19.50</td>
+                                <td>
+                                    <ul class="problem-list">
+                                        <li>屏幕黑屏（多媒体工作正常）</li>
+                                        <li>触屏异常跳动</li>
+                                        <li>开机时卡在JEEP图标画面，稍后自动黑屏或重启</li>
+                                        <li>连接百度carlife时，断开连接后无法重新连接</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="noResults" class="no-results" style="display: none;">
+                        <i class="fas fa-search fa-2x mb-3"></i>
+                        <h5>没有找到匹配的数据</h5>
+                        <p>请尝试其他搜索条件或筛选条件</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <h5><i class="fas fa-info-circle me-2"></i>升级文件注意事项</h5>
+            <p>不同车型和收音机版本需要使用特定格式的U盘和文件组织形式：</p>
+            <ul>
+                <li><strong>所有车型 VP4:</strong> NTFS/FAT32格式，文件置于根目录</li>
+                <li><strong>JL&K4&K8 VP2R:</strong> FAT32格式，建立文件夹并命名为18000000，源文件的压缩包需解压至此文件夹内</li>
+                <li><strong>K8&K4&M4 VP4R:</strong> FAT32/NTFS格式，连带文件夹至于根目录</li>
+                <li><strong>M4&BQ VP2R:</strong> FAT32格式，只要文件至于根目录</li>
+                <li><strong>M4MCA R1L/R1H:</strong> FAT32格式，无需解压直接将压缩包至于U盘</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-key me-2"></i>密码查询方法
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>松下、哈曼查询方法（同进口车型）</h6>
+                        <p>请联系技术支持获取详细查询方法</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>德尔福(Delphi/APTIV)查询方法</h6>
+                        <p>请联系技术支持获取详细查询方法</p>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p class="fw-bold">其他类型也请联系技术支持</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <div class="container">
+            <p>国产Jeep Uconnect升级软件总汇 &copy; 2023</p>
+            <div class="contact-info">
+                <i class="fas fa-phone-alt"></i>技术支持热线: 
+                <a href="tel:18601743060">18601743060</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const modelFilter = document.getElementById('modelFilter');
+            const yearFilter = document.getElementById('yearFilter');
+            const supplierFilter = document.getElementById('supplierFilter');
+            const resetButton = document.getElementById('resetFilters');
+            const tableRows = document.querySelectorAll('tbody tr');
+            const noResults = document.getElementById('noResults');
+            
+            // 存储原始HTML内容，用于移除高亮
+            const originalContent = {};
+            tableRows.forEach((row, index) => {
+                originalContent[index] = row.innerHTML;
+            });
+            
+            function highlightText(text, searchTerm) {
+                if (!searchTerm) return text;
+                
+                const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                return text.replace(regex, '<span class="highlight">$1</span>');
+            }
+            
+            function filterTable() {
+                const searchText = searchInput.value.toLowerCase();
+                const modelValue = modelFilter.value;
+                const yearValue = yearFilter.value;
+                const supplierValue = supplierFilter.value;
+                
+                let visibleRows = 0;
+                
+                tableRows.forEach((row, index) => {
+                    // 恢复原始内容
+                    row.innerHTML = originalContent[index];
+                    
+                    const model = row.getAttribute('data-model');
+                    const year = row.getAttribute('data-year');
+                    const supplier = row.getAttribute('data-supplier');
+                    
+                    // 获取行的所有文本内容用于搜索
+                    let rowText = '';
+                    const cells = row.querySelectorAll('td');
+                    cells.forEach(cell => {
+                        rowText += cell.textContent.toLowerCase() + ' ';
+                    });
+                    
+                    const matchesSearch = searchText === '' || rowText.includes(searchText);
+                    const matchesModel = modelValue === '' || model === modelValue;
+                    const matchesYear = yearValue === '' || year.includes(yearValue);
+                    const matchesSupplier = supplierValue === '' || supplier.includes(supplierValue);
+                    
+                    if (matchesSearch && matchesModel && matchesYear && matchesSupplier) {
+                        row.style.display = '';
+                        visibleRows++;
+                        
+                        // 高亮搜索文本
+                        if (searchText) {
+                            cells.forEach(cell => {
+                                const originalText = cell.innerHTML;
+                                cell.innerHTML = highlightText(originalText, searchText);
+                            });
+                        }
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // 显示/隐藏无结果消息
+                if (visibleRows === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            }
+            
+            searchInput.addEventListener('input', filterTable);
+            modelFilter.addEventListener('change', filterTable);
+            yearFilter.addEventListener('change', filterTable);
+            supplierFilter.addEventListener('change', filterTable);
+            
+            resetButton.addEventListener('click', function() {
+                searchInput.value = '';
+                modelFilter.value = '';
+                yearFilter.value = '';
+                supplierFilter.value = '';
+                
+                // 恢复所有行的原始内容
+                tableRows.forEach((row, index) => {
+                    row.innerHTML = originalContent[index];
+                    row.style.display = '';
+                });
+                
+                noResults.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
